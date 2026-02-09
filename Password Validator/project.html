@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dynamic DFA Password Validator</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body>
+<div id="three-container"></div>
+<div class="container">
+<div class="header">
+    <h1>Dynamic DFA Password Validator</h1>
+    <button class="theme-toggle" id="themeToggle">
+        <i class="fas fa-moon"></i> Dark Mode
+    </button>
+</div>
+
+<div class="content">
+    <div class="input-section">
+        <div class="input-group">
+            <input type="password" id="password" placeholder="Create a strong password" autocomplete="off">
+            <div class="input-hint">Enter your password to see DFA in action</div>
+            <button class="toggle-password" id="togglePassword">
+                <i class="fas fa-eye"></i>
+            </button>
+        </div>
+        
+        <div class="strength-container">
+            <div class="strength-label">
+                <span>Password Strength</span>
+                <span id="strengthPercent">0%</span>
+            </div>
+            <div class="strength-meter">
+                <div class="strength-bar" id="strengthBar"></div>
+            </div>
+            <div class="strength-text" id="strengthText">Very Weak</div>
+        </div>
+        
+        <div class="requirements">
+            <div class="requirement" id="lengthReq">
+                <i class="fas fa-times-circle"></i> At least 8 characters
+            </div>
+            <div class="requirement" id="uppercaseReq">
+                <i class="fas fa-times-circle"></i> At least 1 uppercase letter
+            </div>
+            <div class="requirement" id="digitReq">
+                <i class="fas fa-times-circle"></i> At least 1 digit
+            </div>
+            <div class="requirement" id="specialReq">
+                <i class="fas fa-times-circle"></i> At least 1 special character
+            </div>
+        </div>
+        
+        <div class="password-generator">
+            <div class="generator-title">
+                <i class="fas fa-cog"></i> Password Generator Options
+            </div>
+            <div class="generator-options">
+                <div class="generator-option">
+                    <input type="checkbox" id="genUppercase" checked>
+                    <label for="genUppercase">Uppercase</label>
+                </div>
+                <div class="generator-option">
+                    <input type="checkbox" id="genLowercase" checked>
+                    <label for="genLowercase">Lowercase</label>
+                </div>
+                <div class="generator-option">
+                    <input type="checkbox" id="genNumbers" checked>
+                    <label for="genNumbers">Numbers</label>
+                </div>
+                <div class="generator-option">
+                    <input type="checkbox" id="genSymbols" checked>
+                    <label for="genSymbols">Symbols</label>
+                </div>
+            </div>
+            <div class="generator-slider">
+                <div class="slider-container">
+                    <span>Length:</span>
+                    <span id="lengthValue">12</span>
+                </div>
+                <input type="range" id="passwordLength" min="8" max="32" value="12">
+            </div>
+        </div>
+        
+        <div class="button-group">
+            <button class="copy-btn" id="copyBtn">
+                <i class="fas fa-copy"></i> Copy Password
+            </button>
+            <button class="generate-btn" id="generateBtn">
+                <i class="fas fa-sync-alt"></i> Generate
+            </button>
+            <button class="export-btn" id="exportBtn">
+                <i class="fas fa-file-pdf"></i> Export Report
+            </button>
+        </div>
+        
+        <div class="generations-section">
+            <div class="generations-title">
+                <i class="fas fa-history"></i> Generated Passwords
+            </div>
+            <div id="generatedPasswords"></div>
+        </div>
+        
+        <div class="result" id="result">
+            <i class="fas fa-times-circle"></i> REJECT
+        </div>
+        
+        <div class="password-info">
+            <span class="tooltip">
+                <i class="fas fa-info-circle"></i>
+                <span class="tooltiptext">This validator uses a Deterministic Finite Automaton (DFA) with 5 states to check password strength based on defined rules.</span>
+            </span>
+            DFA-based validation ensures consistent password checking
+        </div>
+    </div>
+    
+    <div class="visualization-section">
+        <div class="dfa-visualization">
+            <div class="dfa-title">
+                <i class="fas fa-project-diagram"></i>
+                DFA State Visualization
+            </div>
+            
+            <div class="states-container">
+                <div class="state q0 active" id="stateQ0">
+                    q0
+                    <div class="state-label">Start</div>
+                </div>
+                
+                <div class="transition-line" id="trans0">
+                    <div class="transition-label"></div>
+                </div>
+                
+                <div class="state q1" id="stateQ1">
+                    q1
+                    <div class="state-label">Length</div>
+                </div>
+                
+                <div class="transition-line" id="trans1">
+                    <div class="transition-label"></div>
+                </div>
+                
+                <div class="state q2" id="stateQ2">
+                    q2
+                    <div class="state-label">Uppercase</div>
+                </div>
+                
+                <div class="transition-line" id="trans2">
+                    <div class="transition-label"></div>
+                </div>
+                
+                <div class="state q3" id="stateQ3">
+                    q3
+                    <div class="state-label">Digit</div>
+                </div>
+                
+                <div class="transition-line" id="trans3">
+                    <div class="transition-label"></div>
+                </div>
+                
+                <div class="state q4" id="stateQ4">
+                    q4
+                    <div class="state-label">Accept</div>
+                </div>
+            </div>
+            
+            <div class="current-state" id="currentState">
+                <i class="fas fa-map-marker-alt"></i> Current State: q0 (Start)
+            </div>
+            
+            <div class="state-description" id="stateDesc">
+                <h3 id="toggleDesc">
+                    DFA States Explanation
+                    <i class="fas fa-chevron-down"></i>
+                </h3>
+                <ul>
+                    <li><strong>q0 (Start):</strong> Initial state - checking for minimum length</li>
+                    <li><strong>q1 (Length):</strong> Password has at least 8 characters</li>
+                    <li><strong>q2 (Uppercase):</strong> Password contains uppercase letter</li>
+                    <li><strong>q3 (Digit):</strong> Password contains a digit</li>
+                    <li><strong>q4 (Accept):</strong> All requirements met - password accepted</li>
+                </ul>
+            </div>
+            
+            <div class="dfa-title" style="margin-top: 20px;">
+                <i class="fas fa-table"></i>
+                Dynamic DFA Transition Table
+            </div>
+            
+            <div class="current-input">
+                Current Input: <span id="currentInput">-</span>
+            </div>
+            
+            <div class="current-dfa-path">
+                <h4>DFA Processing Path:</h4>
+                <div id="dfaPath"></div>
+            </div>
+            
+            <table class="transition-table" id="transitionTable">
+                <thead>
+                    <tr>
+                        <th>State</th>
+                        <th>Length ≥8</th>
+                        <th>Uppercase</th>
+                        <th>Digit</th>
+                        <th>Special Char</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="state-cell">q0</td>
+                        <td id="q0-length">q1</td>
+                        <td id="q0-upper">q0</td>
+                        <td id="q0-digit">q0</td>
+                        <td id="q0-special">q0</td>
+                    </tr>
+                    <tr>
+                        <td class="state-cell">q1</td>
+                        <td id="q1-length">q1</td>
+                        <td id="q1-upper">q2</td>
+                        <td id="q1-digit">q1</td>
+                        <td id="q1-special">q1</td>
+                    </tr>
+                    <tr>
+                        <td class="state-cell">q2</td>
+                        <td id="q2-length">q2</td>
+                        <td id="q2-upper">q2</td>
+                        <td id="q2-digit">q3</td>
+                        <td id="q2-special">q2</td>
+                    </tr>
+                    <tr>
+                        <td class="state-cell">q3</td>
+                        <td id="q3-length">q3</td>
+                        <td id="q3-upper">q3</td>
+                        <td id="q3-digit">q3</td>
+                        <td id="q3-special">q4</td>
+                    </tr>
+                    <tr>
+                        <td class="state-cell">q4</td>
+                        <td id="q4-length">q4</td>
+                        <td id="q4-upper">q4</td>
+                        <td id="q4-digit">q4</td>
+                        <td id="q4-special">q4</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</div>
+
+<div class="report-modal" id="reportModal">
+    <div class="report-content">
+        <div class="report-header">
+            <div class="report-logo">SecurePass DFA Validator</div>
+            <h2>Password Validation Report</h2>
+            <p>Generated on <span id="reportDate"></span></p>
+        </div>
+        <div id="reportBody"></div>
+        <div class="report-footer">
+            <button class="close-report" id="closeReport">Close</button>
+            <button class="download-report" id="downloadReport">Download PDF</button>
+        </div>
+    </div>
+</div>
+<script src="script.js"></script>
+
+
+</body>
+</html>
+
