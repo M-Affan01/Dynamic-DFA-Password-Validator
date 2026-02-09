@@ -842,8 +842,6 @@ Where:
 
 <div align="center">
 
-### **🌟 Star History**
-[![Star History Chart](https://api.star-history.com/svg?repos=yourusername/dfa-password-validator&type=Date)](https://star-history.com/#yourusername/dfa-password-validator&Date)
 
 **Built with ❤️ for the cybersecurity and education communities**
 
