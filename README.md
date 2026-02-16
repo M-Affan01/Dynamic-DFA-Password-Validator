@@ -1,4 +1,4 @@
-# 🔐 Dynamic DFA Password Validator
+# Dynamic DFA Password Validator
 
 <div align="center">
 
@@ -18,30 +18,30 @@
 
 ---
 
-## 📋 Table of Contents
-- [🌟 Overview](#-overview)
-- [✨ Features](#-features)
-- [🏗️ Architecture](#️-architecture)
-- [🛠️ Technical Stack](#️-technical-stack)
-- [📁 Project Structure](#-project-structure)
-- [⚡ Quick Start](#-quick-start)
-- [🚀 Usage Guide](#-usage-guide)
-- [🧪 Development Setup](#-development-setup)
-- [⚙️ Performance & Optimization](#️-performance--optimization)
-- [🤝 Contributing](#-contributing)
-- [📄 License](#-license)
-- [🎓 Academic Context](#-academic-context)
-- [📞 Contact](#-contact)
+## Table of Contents
+- Overview
+- Features
+- Architecture
+- Technical Stack
+- Project Structure
+- Quick Start
+- Usage Guide
+- Development Setup
+- Performance & Optimization
+- Contributing
+- License
+- Academic Context
+- Contact
 
 ---
 
-## 🌟 Overview
+## Overview
 
 **Dynamic DFA Password Validator** is an enterprise-grade web application that bridges theoretical computer science with practical cybersecurity. This sophisticated tool implements a **5-state Deterministic Finite Automaton (DFA)** to validate passwords against four critical security requirements while providing real-time visual feedback, comprehensive analytics, and professional reporting.
 
 The project demonstrates how formal language theory concepts can be applied to real-world security validation, making it both an educational resource for computer science students and a practical tool for security professionals.
 
-### 🎯 Real-World Applications
+### Real-World Applications
 - **Cybersecurity Training**: Teach password security principles through interactive visualization
 - **Developer Education**: Demonstrate finite automata implementation in practical scenarios
 - **Security Auditing**: Validate password policies compliance
@@ -49,9 +49,9 @@ The project demonstrates how formal language theory concepts can be applied to r
 
 ---
 
-## ✨ Features
+## Features
 
-### 🔐 **Core Validation System**
+### **Core Validation System**
 - **5-State DFA Engine**: Implements q0 → q1 → q2 → q3 → q4 state transition model
 - **Real-Time Processing**: Validates passwords character-by-character with instant feedback
 - **Multi-Criteria Validation**:
@@ -61,28 +61,28 @@ The project demonstrates how formal language theory concepts can be applied to r
   - Special character enforcement
 - **Strength Scoring Algorithm**: Weighted scoring (0-100%) based on requirement fulfillment
 
-### 🎨 **Advanced Visualization**
+### **Advanced Visualization**
 - **Interactive DFA Diagram**: Animated state circles with real-time highlighting
 - **Dynamic Transition Table**: Live-updating DFA transition matrix with path highlighting
 - **Processing Path Tracker**: Visual breadcrumb trail showing DFA traversal
 - **3D Particle Background**: Three.js-powered animated particle system
 - **Custom Cursor System**: Context-aware cursor with particle trails and hover effects
 
-### 📊 **Reporting & Analytics**
+### **Reporting & Analytics**
 - **Comprehensive Validation Reports**: Detailed analysis of password security
 - **PDF Export**: Professional-grade report generation with jsPDF
 - **Security Recommendations**: Actionable suggestions for password improvement
 - **Historical Tracking**: Store and manage previously generated/validated passwords
 - **Validation Metrics**: Performance statistics and security level assessments
 
-### 💻 **User Experience**
+### **User Experience**
 - **Dual Theme System**: Seamless light/dark mode switching with CSS variables
 - **Password Generator**: Configurable random password creation with 4 character sets
 - **Copy-Paste Integration**: One-click password copying with visual confirmation
 - **Responsive Design**: Mobile-first approach with adaptive layouts
 - **Accessibility Features**: Keyboard navigation and screen reader support
 
-### 🛠️ **Developer Features**
+### **Developer Features**
 - **Modular Architecture**: Clean separation of concerns in single-file implementation
 - **Extensive Documentation**: Comprehensive code comments and architectural guides
 - **Performance Optimized**: 60 FPS animations with efficient DOM updates
@@ -90,9 +90,9 @@ The project demonstrates how formal language theory concepts can be applied to r
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 
-### 📐 **System Design**
+### **System Design**
 
 ```
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
@@ -116,7 +116,7 @@ The project demonstrates how formal language theory concepts can be applied to r
 └─────────────────┘                           └─────────────────┘
 ```
 
-### 🔄 **DFA State Machine Implementation**
+### **DFA State Machine Implementation**
 
 #### **State Definitions (Q = {q0, q1, q2, q3, q4}):**
 1. **q0 (Start State)**: Initial state - awaiting password input
@@ -145,7 +145,7 @@ Where:
 • F = {q4} ⊆ Q  (set of accept states)
 ```
 
-### 🧩 **Component Architecture**
+### **Component Architecture**
 
 #### **1. DFA Engine Module**
 - **State Manager**: Tracks current state and validates transitions
@@ -169,7 +169,7 @@ Where:
 
 ---
 
-## 🛠️ Technical Stack
+## Technical Stack
 
 ### **Core Technologies**
 | Technology | Version | Purpose | Implementation |
@@ -194,26 +194,26 @@ Where:
 ### **Browser Compatibility Matrix**
 | Browser | Version | Status | Notes |
 |---------|---------|--------|-------|
-| **Google Chrome** | 90+ | ✅ Fully Supported | Optimal performance |
-| **Mozilla Firefox** | 88+ | ✅ Fully Supported | Excellent compatibility |
-| **Apple Safari** | 14+ | ✅ Fully Supported | Mobile & desktop |
-| **Microsoft Edge** | 90+ | ✅ Fully Supported | Chromium-based |
-| **Mobile Browsers** | iOS 14+ / Android 10+ | ✅ Responsive | Touch-optimized UI |
+| **Google Chrome** | 90+ | Fully Supported | Optimal performance |
+| **Mozilla Firefox** | 88+ | Fully Supported | Excellent compatibility |
+| **Apple Safari** | 14+ | Fully Supported | Mobile & desktop |
+| **Microsoft Edge** | 90+ | Fully Supported | Chromium-based |
+| **Mobile Browsers** | iOS 14+ / Android 10+ | Responsive | Touch-optimized UI |
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 PASSWORD VALIDATOR/
-├── 📄 project.html                 # Main application file (Complete HTML structure)
+├── project.html                 # Main application file (Complete HTML structure)
 │   ├── HTML5 semantic structure
 │   ├── DFA visualization components
 │   ├── Input controls & forms
 │   ├── Modal dialog for reports
 │   └── External library imports
 │
-├── 🎨 style.css                    # Complete styling system (1,000+ lines)
+├── style.css                    # Complete styling system (1,000+ lines)
 │   ├── CSS Custom Properties (Theming)
 │   ├── DFA state styling & animations
 │   ├── Responsive design breakpoints
@@ -221,7 +221,7 @@ PASSWORD VALIDATOR/
 │   ├── Transition & animation keyframes
 │   └── Component-specific styles
 │
-└── ⚙️ script.js                    # Core application logic (1,500+ lines)
+└── script.js                    # Core application logic (1,500+ lines)
     ├── DFA Engine Implementation
     │   ├── State management (q0-q4)
     │   ├── Transition logic
@@ -261,21 +261,21 @@ PASSWORD VALIDATOR/
 
 ### **File Responsibilities:**
 
-#### **📄 `project.html`**
+#### **`project.html`**
 - **Complete UI Structure**: Contains all HTML markup for the application
 - **External Dependencies**: CDN imports for all required libraries
 - **Semantic Markup**: Proper HTML5 elements for accessibility
 - **Modal Systems**: Embedded report modal with dynamic content
 - **DFA Visualization**: Complete state machine diagram markup
 
-#### **🎨 `style.css`**
+#### **`style.css`**
 - **Theming System**: CSS variables for light/dark mode
 - **Responsive Design**: Mobile-first media queries
 - **Animation Framework**: Keyframes and transitions
 - **Component Library**: Reusable UI component styles
 - **Custom Cursor**: Advanced cursor effects with trails
 
-#### **⚙️ `script.js`**
+#### **`script.js`**
 - **Application Core**: All business logic and functionality
 - **DFA Implementation**: Complete state machine logic
 - **Visualization Engine**: Real-time DFA visualization
@@ -284,7 +284,7 @@ PASSWORD VALIDATOR/
 
 ---
 
-## ⚡ Quick Start
+## Quick Start
 
 ### **Method 1: Instant Browser Execution (Recommended)**
 ```bash
@@ -340,7 +340,7 @@ docker run -p 8080:80 dfa-validator
 
 ---
 
-## 🚀 Usage Guide
+## Usage Guide
 
 ### **1. Basic Password Validation**
 ```javascript
@@ -492,7 +492,7 @@ class DFAPasswordValidator {     // Classes: PascalCase
 
 ---
 
-## ⚙️ Performance & Optimization
+## Performance & Optimization
 
 ### **Current Optimizations**
 
@@ -554,14 +554,14 @@ const animationPool = {
 ```
 
 ### **Performance Metrics**
-| Metric | Target | Current | Improvement |
-|--------|--------|---------|-------------|
-| **First Contentful Paint** | < 1.5s | 1.2s | ✅ |
-| **Time to Interactive** | < 3s | 2.4s | ✅ |
-| **Animation Frame Rate** | 60 FPS | 58-60 FPS | ✅ |
-| **Memory Usage** | < 100MB | 85MB | ✅ |
-| **Validation Speed** | < 100ms | < 50ms | ✅ |
-| **PDF Generation** | < 3s | 2.1s | ✅ |
+| Metric | Target | Current |
+|--------|--------|---------|
+| **First Contentful Paint** | < 1.5s | 1.2s |
+| **Time to Interactive** | < 3s | 2.4s |
+| **Animation Frame Rate** | 60 FPS | 58-60 FPS |
+| **Memory Usage** | < 100MB | 85MB |
+| **Validation Speed** | < 100ms | < 50ms |
+| **PDF Generation** | < 3s | 2.1s |
 
 ### **Optimization Techniques Applied**
 
@@ -613,7 +613,7 @@ const duration = perfMonitor.endMeasurement('DFA Validation');
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 ### **Contribution Workflow**
 ```mermaid
@@ -712,7 +712,7 @@ describe('Full System Integration', () => {
 
 ---
 
-## 📄 License
+## License
 
 ### **MIT License**
 ```
@@ -754,7 +754,7 @@ SOFTWARE.
 
 ---
 
-## 🎓 Academic Context
+## Academic Context
 
 ### **Formal Language Theory Connection**
 This project provides a practical implementation of key automata theory concepts:
@@ -813,7 +813,7 @@ Where:
 
 ---
 
-## 📞 Contact
+## Contact
 
 ### **Project Maintainer**
 - **Name**: Muhammad Affan
@@ -842,9 +842,7 @@ Where:
 
 <div align="center">
 
-
 **Built with ❤️ for the cybersecurity and education communities**
 
-[⬆ Back to Top](#-dynamic-dfa-password-validator)
 
 </div>
